@@ -65,15 +65,13 @@ function App() {
         <div className="button-container">
           {buttonData.map((item, index) => {
             return (
-              <>
-                <Button number={item} onTouch={onTouch}>
-                  <p>ABC</p>
-                  <img
-                    className="image"
-                    src={"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"}
-                  />
-                </Button>
-              </>
+              <Button key={index} number={item} onTouch={onTouch}>
+                <p>ABC</p>
+                <img
+                  className="image"
+                  src={"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"}
+                />
+              </Button>
             );
           })}
         </div>
