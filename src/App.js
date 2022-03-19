@@ -1,7 +1,9 @@
-import logo from "./logo.svg";
-import "./App.css";
 // import Button from "./components/button"
 import { useState } from "react";
+import "./App.css";
+import Button from "./components/button";
+
+const tempImage = ["", "", ""];
 
 function App() {
   const [count, setCount] = useState(0);
@@ -43,6 +45,10 @@ function App() {
     );
   };
 
+  const onTouch = (event) => {
+    setCount(event.target.value);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -57,9 +63,28 @@ function App() {
         {renderButton("-", onMinus)} */}
         <div className="button-container">
           {buttonData.map((item, index) => {
-            return renderButtonNumber(item);
+            return (
+              <>
+                <Button number={item} onTouch={onTouch}>
+                  <p>ABC</p>
+                  <img
+                    className="image"
+                    src={"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"}
+                  />
+                </Button>
+              </>
+            );
           })}
         </div>
+        <Button>
+          <p>Button text</p>
+          <img
+            className="image"
+            src={
+              "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80"
+            }
+          />
+        </Button>
         {renderTextCount()}
       </header>
     </div>
