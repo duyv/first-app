@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./App.css";
 import Button from "./components/button";
+import ButtonClass from "./components/buttonclass";
 
 const tempImage = ["", "", ""];
 
@@ -76,7 +77,7 @@ function App() {
             );
           })}
         </div>
-        <Button>
+        <ButtonClass number={12}>
           <p>Button text</p>
           <img
             className="image"
@@ -84,7 +85,7 @@ function App() {
               "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80"
             }
           />
-        </Button>
+        </ButtonClass>
         {renderTextCount()}
       </header>
     </div>
