@@ -1,0 +1,11 @@
+.box-image {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image {
+    height: 150px;
+    width: 150px;
+}
