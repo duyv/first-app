@@ -1,68 +1,79 @@
-import logo from "./logo.svg";
-import "./App.css";
-// import Button from "./components/button"
-import { useState } from "react";
+import logo from './logo.svg';
+import './App.css';
+import {useState, useEffect} from 'react';
+import ListStudent from './components/student/ListStudent';
+import FormStudent from './components/student/FormStudent';
+
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const onPlus = () => {
-    setCount(count + 1);
+  const [user, setUser] = useState({
+     value:{
+      'name': "",
+      'email': "",
+      'phone': ""
+  }    
+  });
+  const [list, setList] = useState({
+    listData: [],
+    countStudent: ''
+  });
+  useEffect(() => {
+    setUser({
+      value: {
+        'name': '',
+        'email': '',
+        'phone': ''
+      }
+    })
+  }, [list])
+  console.log('user',user);
+  const handleInputChange = (e) => {
+    let {name,value} = e.target;
+    let newUser = {...user.value,[name]:value};
+    setUser({
+      value:newUser
+    })
+   
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let listInput = { ...user.value };
+   
+    list.listData.push(listInput);
+    let listUpdate = [...list.listData];
+    setList({
+      listData: listUpdate,
+      countStudent: listUpdate.length
+    })
   };
 
-  const onMinus = () => {
-    setCount(count - 1);
-  };
-
-  let buttonData = [];
-  for (let i = 1; i < 10; i++) {
-    buttonData.push(i);
-  }
-
-  const renderTextCount = () => {
-    return <p>Count time: {count}</p>;
-  };
-
-  const showAlert = (message) => {
-    alert(message);
-  };
-
-  const renderButton = (textButton, onClick, index) => {
-    return (
-      <button key={`${index}`} className="button-count" onClick={onClick}>
-        <p>{textButton}</p>
-      </button>
-    );
-  };
-
-  const renderButtonNumber = (button) => {
-    return (
-      <button key={`${button}`} className="button-count" onClick={() => setCount(button)}>
-        <p>{button}</p>
-      </button>
-    );
-  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a> */}
-        {/* {renderButton("+", onPlus)}
-        {renderButton("-", onMinus)} */}
-        <div className="button-container">
-          {buttonData.map((item, index) => {
-            return renderButtonNumber(item);
-          })}
+    <>
+    <div className='form-list-student'>
+        <form onSubmit={handleSubmit}>
+        <div className="form-control">
+          <label>Name: </label>
+          <input className='name' type="text" name="name" value={user.value.name} required onChange={handleInputChange} />
         </div>
-        {renderTextCount()}
-      </header>
+        <div className="form-control">
+          <label>Email: </label>
+          <input className='email' type="text" name="email" value={user.value.email} required onChange={handleInputChange} />
+        </div>
+        <div className="form-control">
+          <label>Phone: </label>
+          <input className='phone' type="number" name="phone" value={user.value.phone} required  onChange={handleInputChange} />
+        </div>
+        <div className="form-control">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <div className='count'>Sỉ Số: {list.countStudent}</div>
+      <div className="list-student">
+        <ListStudent listData={list.listData}/>
+      </div>
     </div>
+    </>
   );
 }
 

@@ -49,3 +49,31 @@
     transform: rotate(360deg);
   }
 }
+
+
+.students {
+  border: solid 2px #ccc;
+  max-width: 300px;
+  margin: 10px 0;
+  position: relative;
+}
+.students span {
+  position: absolute;
+  top: -15px;
+  right: 0;
+  font-size: 25px;
+  color: brown;
+  cursor: pointer;
+}
+.students p {
+  margin: 20px;
+}
+.form-list-student {
+  margin: 50px;
+}
+.form-list-student button {
+  margin: 20px 50px;
+}
+.count {
+  font-weight: 700;
+}
