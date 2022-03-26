@@ -1,10 +1,23 @@
 import logo from "./logo.svg";
 import "./App.css";
-// import Button from "./components/button"
-import { useState } from "react";
+import Button from "./components/button";
+import ButtonClass from "./components/buttonclass";
+import LifeCycle from "./components/lifecycle";
+import LifeCycleHooks from "./components/lifecyclehooks";
+// import ProcessBar from "./components/processbar";
+import Random from "./components/random";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [processData, setProcessData] = useState([]);
+  const [countVisible, setCountVisible] = useState(true);
+  const [randomIndex, setRandomIndex] = useState(0);
+  const [showLifeCycle, setShowLifeCycle] = useState(true);
+  const arrayData = [
+    "#CCC",
+    "#FFF",
+    "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg",
+  ];
 
   const onPlus = () => {
     setCount(count + 1);
@@ -35,32 +48,13 @@ function App() {
     );
   };
 
-  const renderButtonNumber = (button) => {
-    return (
-      <button key={`${button}`} className="button-count" onClick={() => setCount(button)}>
-        <p>{button}</p>
-      </button>
-    );
-  };
-
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a> */}
-        {/* {renderButton("+", onPlus)}
-        {renderButton("-", onMinus)} */}
-        <div className="button-container">
-          {buttonData.map((item, index) => {
-            return renderButtonNumber(item);
-          })}
-        </div>
-        {renderTextCount()}
+        <div className="button-container"></div>
+
+        {/* <ProcessBar /> */}
+        <Random />
       </header>
     </div>
   );
