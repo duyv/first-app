@@ -1,0 +1,12 @@
+.box-loading {
+
+    width: 50vh;
+    height: 50px;
+    border: 1px solid #222;
+    display: flex
+}
+.box-item {
+    width: 10%;
+    background: green;
+    height: 100%
+}
