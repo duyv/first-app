@@ -1,3 +1,11 @@
+
+import logo from "./logo.svg";
+import "./App.css";
+import Button from "./components/button";
+import ButtonClass from "./components/buttonclass";
+import LifeCycle from "./components/lifecycle";
+import LifeCycleHooks from "./components/lifecyclehooks";
+// import ProcessBar from "./components/processbar";
 // import Button from "./components/button"
 import { useEffect, useState } from "react";
 import "./App.css";
@@ -10,11 +18,13 @@ function App() {
   const [processData, setProcessData] = useState([]);
   const [countVisible, setCountVisible] = useState(true);
   const [randomIndex, setRandomIndex] = useState(0);
+  const [showLifeCycle, setShowLifeCycle] = useState(true);
   const arrayData = [
     "#CCC",
     "#FFF",
     "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg",
   ];
+
   // useEffect(() => {
   //   console.log("A");
   //   const autoProcess = setInterval(() => {
@@ -70,56 +80,14 @@ function App() {
     );
   };
 
-  const renderButtonNumber = (button) => {
-    return (
-      <button key={`${button}`} className="button-count" onClick={() => setCount(button)}>
-        <p>{button}</p>
-      </button>
-    );
-  };
-
-  const onTouch = (item) => {
-    // console.log("event::", item);
-    // setCount(item);
-    const newIndex = Math.round(Math.random() * 3);
-    setRandomIndex(newIndex);
-  };
-
-  const toggleButton = () => {
-    setCountVisible((prevCountVisible) => !prevCountVisible);
-  };
-
   return (
     <div className="App">
       <header className="App-header">
-        {/* {renderButton("+", onPlus)}
-        {renderButton("-", onMinus)} */}
-        <div className="button-container">
-          {/* <Random /> */}
-          {/* {countVisible && (
-            <Button number={0} onTouch={() => onTouch(0)}>
-              <p>ABC</p>
-              <img
-                className="image"
-                src={"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"}
-              />
-            </Button>
-          )}
-          {countVisible && (
-            <ButtonClass number={0} onTouch={() => onTouch(0)}>
-              <p>ABC</p>
-              <img
-                className="image"
-                src={"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"}
-              />
-            </ButtonClass> 
-          )}*/}
-        </div>
-        <ButtonClass onTouch={onTouch}>
-          <p>Toggle Button</p>
-        </ButtonClass>
-        {/* {renderTextCount()} */}
-        {/* <div className="process-bar">{processData}</div> */}
+        <div className="button-container"></div>
+
+        {/* <ProcessBar /> */}
+        <Random />
+
       </header>
     </div>
   );
