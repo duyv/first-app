@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import ProcessBar from "./components/processbar";
 import ProcessBarClass from "./components/processbar/classComponent";
