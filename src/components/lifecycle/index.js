@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { Component } from "react";
 import "./styles.css";
 
 class LifeCycle extends Component {

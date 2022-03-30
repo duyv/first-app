@@ -1,17 +1,12 @@
-
 import { useState } from "react";
 // import Button from "./components/button"
-import { useEffect, useState } from "react";
 
 import "./styles.css";
 import Button from "../button";
 import ButtonClass from "../buttonclass";
 
 function Random() {
-
   const [count, setCount] = useState(0);
-  const [processData, setProcessData] = useState([]);
-  const [countVisible, setCountVisible] = useState(true);
 
   const [randomIndex, setRandomIndex] = useState(0);
   const arrayData = [
@@ -19,7 +14,6 @@ function Random() {
     "#FFF",
     "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg",
   ];
-
 
   const onPlus = () => {
     setCount(count + 1);
