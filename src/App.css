@@ -30,7 +30,6 @@
 
 .button-container {
   flex-direction: row;
-  width: 150px;
   flex-wrap: wrap;
 }
 

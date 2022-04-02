@@ -1,22 +1,17 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
-import ProcessBar from "./components/processbar";
-import ProcessBarClass from "./components/processbar/classComponent";
+import Navigation from "./navigation";
+import RootRouter from "./router";
 
 function App() {
-  let buttonData = [];
-  for (let i = 1; i < 10; i++) {
-    buttonData.push(i);
-  }
-
   return (
     <div className="App">
       <header className="App-header">
-        <div className="button-container"></div>
-
-        <ProcessBar />
-        <ProcessBarClass />
-        {/* <Random /> */}
+        <div className="button-container">
+          <h1>Home Page</h1>
+          <Navigation />
+          <RootRouter />
+        </div>
       </header>
     </div>
   );
