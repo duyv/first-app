@@ -21,6 +21,8 @@ class ProcessBar extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    console.log("currentState", this.state);
+    console.log("nextState", nextState);
     return this.state.count != nextState.count || this.state.processData.length == 0;
   }
 
