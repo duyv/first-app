@@ -1,0 +1,22 @@
+.container {
+    text-align: center;
+}
+
+.process-bar {
+    display: inline-block;
+    height: 50px;
+    width: 500px;
+    border-width: 1px;
+    border-color: white;
+    border-style: solid;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.process-bar .indicator {
+    display: table-cell;
+    height: 50px;
+    width: 50px;
+    background-color: green;
+}
