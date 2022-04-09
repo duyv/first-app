@@ -4,9 +4,8 @@ import "./styles.css";
 import useRandom from "../../hooks/useRandom";
 
 export function Week2() {
-  const [value, setValue] = useState(0);
-  const preValue = useRef(0);
-  const { renderChild, onRandom, getRandomChild } = useRandom();
+  const [, setRefresh] = useState(false);
+  const { getRandomChild } = useRandom();
   const boxData = [
     "green",
     "red",
@@ -16,41 +15,12 @@ export function Week2() {
     "https://www.thoughtco.com/thmb/U3uVJMsgzLd00DbkIicnnIYM_kM=/1414x1414/smart/filters%3Ano_upscale()/lotus-flower-828457262-5c6334b646e0fb0001dcd75a.jpg",
   ];
 
-  //TODO: Find the solution replace the for method
+  let boxDataUse = [...boxData];
+
   const onClick = () => {
-    console.log("🚀 ~ file: week-2.js ~ line 10 ~ Week2 ~ renderChild", renderChild);
-    onRandom();
-    // let newValue = onRandom();
-    // setValue((prevState) => {
-    //   if (newValue == prevState) {
-    //     return onRandom();
-    //   } else {
-    //     return newValue;
-    //   }
-    // });
-
-    // let newValue = 0;
-    // console.log("value", value);
-
-    // do {
-    //   newValue = onRandom();
-    // } while (newValue == preValue.current);
-    // console.log("current", preValue.current);
-    // preValue.current = newValue;
-    // setValue(newValue);
-
-    // let randomValues = [];
-    // for (let i = 0; i < 3; i++) {
-    //   randomValues.push(onRandom());
-    // }
-    // console.log("🚀 ~ file: week-2.js ~ line 18 ~ onClick ~ randomValues", randomValues);
-
-    // setValue(randomValues);
+    boxDataUse = [...boxData];
+    setRefresh((prevRefresh) => !prevRefresh);
   };
-
-  // useEffect(() => {
-  //   onClick();
-  // }, []);
 
   return (
     <div>
@@ -58,7 +28,8 @@ export function Week2() {
       <button onClick={onClick}>Random</button>
       <div className="box-container">
         {new Array(3).fill(null).map((item, index) => {
-          const child = getRandomChild();
+          const [child, indexChild] = getRandomChild(boxDataUse);
+          boxDataUse.splice(indexChild, 1);
           return <Box key={index}>{child}</Box>;
         })}
       </div>
