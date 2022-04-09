@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function useRandom() {
   const [value, setValue] = useState(0);
@@ -10,16 +10,26 @@ function useRandom() {
     "https://thumbs.dreamstime.com/b/aster-flowers-art-design-26968847.jpg",
     "https://www.thoughtco.com/thmb/U3uVJMsgzLd00DbkIicnnIYM_kM=/1414x1414/smart/filters%3Ano_upscale()/lotus-flower-828457262-5c6334b646e0fb0001dcd75a.jpg",
   ];
+  const prevRandom = useRef(-1);
 
+  let random = prevRandom.current;
   const onRandom = () => {
-    console.log("vao day");
-    const random = Math.round(Math.random() * 5);
+    do {
+      random = Math.round(Math.random() * 5);
+    } while (prevRandom.current === random);
+    prevRandom.current = random;
     setValue(random);
-    // return random;
+  };
+
+  const getRandom = () => {
+    do {
+      random = Math.round(Math.random() * 5);
+    } while (prevRandom.current === random);
+    prevRandom.current = random;
+    return random;
   };
 
   const randomData = (random) => {
-    console.log("🚀 ~ file: useRandom.js ~ line 25 ~ randomData ~ random", random);
     const dataRandom = boxData[random];
     const isImage = dataRandom.startsWith("https");
     if (isImage) {
@@ -29,7 +39,12 @@ function useRandom() {
     }
   };
 
-  return { renderChild: randomData(value), onRandom };
+  const getRandomChild = () => {
+    const index = getRandom();
+    return randomData(index);
+  };
+
+  return { renderChild: randomData(value), onRandom, getRandomChild };
 }
 
 export default useRandom;
