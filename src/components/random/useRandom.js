@@ -1,39 +1,53 @@
-import { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
+import { boxData } from './boxData'
+import Box from '../box'
 
-export default function RandomData() {
-  const [value, setValue] = useState(0)
-  const preValue = useRef(0)
-  // array of colors
-  const boxData = [
-    'green',
-    'red',
-    'yellow',
-    'https://www.gardeningknowhow.com/wp-content/uploads/2019/09/flower-color.jpg',
-    'https://thumbs.dreamstime.com/b/aster-flowers-art-design-26968847.jpg',
-    'https://www.thoughtco.com/thmb/U3uVJMsgzLd00DbkIicnnIYM_kM=/1414x1414/smart/filters%3Ano_upscale()/lotus-flower-828457262-5c6334b646e0fb0001dcd75a.jpg',
-  ]
-  
-  //run onRandom function
-  //if onRandom value duplicate, run onRandom function again
-  //if onRandom value not duplicate, setValue to onRandom value
-  const onRandom = () => {
-    const random = Math.floor(Math.random() * boxData.length)
-    if (preValue.current === random) {
-      onRandom()
-    } else {
-      setValue(random)
-      preValue.current = random
-    }
+export default function UseRandom() {
+  const [, setRefresh] = useState(false);
+  const prevRandom = useRef(-1);
+
+  let random = prevRandom.current;
+
+  const getRandom = (range) => {
+    do {
+      random = Math.round(Math.random() * range);
+    } while (prevRandom.current === random);
+    prevRandom.current = random;
+    return random;
   }
 
-  const randomData = (value) => {
-    const data = boxData[value]
-    const isImage = data.startsWith('https')
+  const randomData = (random, data) => {
+    const dataRandom = data[random]
+    const isImage = dataRandom.startsWith("https")
     return isImage ? (
-      <img src={data} style={{ height: '100%', width: '100%' }} />
+      <img src={dataRandom} style={{ height: '100%', width: '100%' }} />
     ) : (
-      <div style={{ height: '100%', width: '100%', backgroundColor: data }} />
+      <div style={{ height: '100%', width: '100%', backgroundColor: dataRandom }} />
     )
   }
-   return { renderChild: randomData(value), onRandom };
+  
+  const getRandomChild = (data) => {
+    const index = getRandom(data.length - 1);
+    return [randomData(index, data), index];
+  }
+
+  let boxDataUse = [...boxData];
+
+  const onClick = () => {
+    boxDataUse = [...boxData];
+    setRefresh((prevRefresh) => !prevRefresh);
+  };
+
+  return ( 
+   <div>
+      <div className="box-container">
+        {new Array(3).fill(null).map((_, i) => {
+          const [child, indexChild] = getRandomChild(boxDataUse);
+          boxDataUse.splice(indexChild, 1);
+          return <Box key={i}>{child}</Box>
+        })}
+      </div>
+      <button onClick={onClick}>Random</button>
+    </div>
+  )
 }

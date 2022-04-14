@@ -65,7 +65,8 @@ export default function Form() {
           <tbody>
             {students.map((student) => (
               <tr key={student.id}>
-                <td>Name: {student.name} <button className="btn btn-danger" onClick={() => handleDelete(student.id)}/></td>
+                <td><button className="btn btn-danger" onClick={() => handleDelete(student.id)}/></td>
+                <td>Name: {student.name}</td>
                 <td>Email: {student.email}</td>
                 <td>Phone: {student.phone}</td>
               </tr>
