@@ -2,3 +2,12 @@
     display: flex;
     /* flex-direction: row; */
 }
+
+.form-horizontal {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input {
+    margin-bottom: 10px;
+}
