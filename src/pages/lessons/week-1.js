@@ -39,6 +39,7 @@ export function Week1() {
     <div>
       <h1>Week 1</h1>
       <form className="form-horizontal" onSubmit={onAddStudent}>
+        <p>FORM STUDENT </p>
         <input className="form-input" type="text" name="name" />
         <input className="form-input" type="text" name="email" />
         <textarea className="form-input" type="text" name="description" />
@@ -46,12 +47,13 @@ export function Week1() {
       </form>
       <br />
       <br />
-      <br />
       <form className="form-horizontal" onSubmit={onAddClass}>
+        <p>FORM CLASS </p>
         <input className="form-input" type="text" name="name" />
         <textarea className="form-input" type="text" name="description" />
         <input type="submit" />
       </form>
+      <br />
     </div>
   );
 }
