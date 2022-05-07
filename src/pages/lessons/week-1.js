@@ -1,11 +1,20 @@
-import { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addClass, addStudent } from "../../redux/actions";
 
 export function Week1() {
-  const [students, setStudents] = useState([
-    { id: 0, name: "test 123", email: "test123@gmail.com", description: ",my descriptiton" },
-  ]);
-  const navigate = useNavigate();
+  const studentList = useSelector((state) => state.studentReducer);
+  const classList = useSelector((state) => state.classReducer);
+  const dispatch = useDispatch();
+
+  const onAddClass = (event) => {
+    event.preventDefault();
+    const name = event.target["name"].value;
+    const description = event.target["description"].value;
+    event.target.reset();
+
+    dispatch(addClass({ id: classList.length, name: name, description: description }));
+  };
 
   const onAddStudent = (event) => {
     event.preventDefault();
@@ -13,15 +22,18 @@ export function Week1() {
     const email = event.target["email"].value;
     const description = event.target["description"].value;
     event.target.reset();
-    setStudents((prevStudent) => [
-      ...prevStudent,
-      { id: prevStudent.length, name: name, email: email, description: description },
-    ]);
+
+    // dispatch({
+    //   type: "ADD_STUDENT",
+    //   payload: { id: studentList.length, name: name, email: email, description: description },
+    // });
+
+    dispatch(addStudent({ id: studentList.length, name: name, email: email, description: description }));
   };
 
-  const goToDetail = (student) => {
-    navigate(`/week-1/${student.id}`, { state: student });
-  };
+  useEffect(() => {
+    localStorage.setItem("studentList", JSON.stringify(studentList));
+  }, [onAddStudent]);
 
   return (
     <div>
@@ -32,16 +44,14 @@ export function Week1() {
         <textarea className="form-input" type="text" name="description" />
         <input type="submit" />
       </form>
-
-      <ul>
-        {students.map((student, index) => (
-          <div key={index}>
-            <span>{student.name}</span>
-            <button onClick={() => goToDetail(student)}>Detail</button>
-          </div>
-        ))}
-      </ul>
-      <Outlet />
+      <br />
+      <br />
+      <br />
+      <form className="form-horizontal" onSubmit={onAddClass}>
+        <input className="form-input" type="text" name="name" />
+        <textarea className="form-input" type="text" name="description" />
+        <input type="submit" />
+      </form>
     </div>
   );
 }
