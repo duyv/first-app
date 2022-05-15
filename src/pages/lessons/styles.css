@@ -1,0 +1,26 @@
+.box-container {
+    display: flex;
+    /* flex-direction: row; */
+}
+
+.form-horizontal {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input {
+    margin-bottom: 10px;
+}
+
+.film-item {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+}
+.film-item .avatar-film {
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
