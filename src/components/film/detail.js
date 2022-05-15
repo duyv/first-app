@@ -1,12 +1,15 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 import ReactPlayer from "react-player";
+import { useDispatch, useSelector } from "react-redux";
+import { likeFilmAction } from "../redux/actions";
 
 const DetailFilm = () => {
   const location = useLocation();
   const dataFilm = location.state;
   const [dataSearch, setDataSearch] = React.useState([...dataFilm]);
-  console.log(12345, dataSearch);
+  const data = useSelector((state) => state.filmReducer);
+  const dispatch = useDispatch();
   const handleSearch = (e) => {
     const value = e.target.value;
     const search = dataSearch.find((el) => el.nameFilm.includes(value));
@@ -24,7 +27,7 @@ const DetailFilm = () => {
       </span>
       <h1>Detail film</h1>
       <div style={{ display: "flex", flexDirection: "row", gap: "30px" }}>
-        {dataSearch.map((el, indx) => {
+        {data.map((el, indx) => {
           return (
             <div style={{ width: "400px" }} key={indx}>
               <p>Name of Film: {el.nameFilm}</p>
@@ -34,6 +37,12 @@ const DetailFilm = () => {
                 <a href={el.linkFilm} target={"_blank"}>
                   Click here
                 </a>
+              </p>
+              <p
+                onClick={() => dispatch(likeFilmAction(el.nameFilm))}
+                style={{ color: el.like ? "blue" : "white" }}
+              >
+                Like
               </p>
               <ReactPlayer
                 url={el.linkFilm}

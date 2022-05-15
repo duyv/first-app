@@ -1,5 +1,7 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
 import { Route, Routes, Link, useNavigate } from "react-router-dom";
+import { addFilmAction } from "../redux/actions";
 import DetailFilm from "./detail";
 
 const FormFilm = () => {
@@ -8,16 +10,24 @@ const FormFilm = () => {
   const [link, setLink] = React.useState("");
   const [image, setImage] = React.useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    setDataFilm([
-      ...dataFilm,
-      {
+    // setDataFilm([
+    //   ...dataFilm,
+    //   {
+    //     nameFilm: name,
+    //     linkFilm: link,
+    //     imageFilm: image,
+    //   },
+    // ]);
+    dispatch(
+      addFilmAction({
         nameFilm: name,
         linkFilm: link,
         imageFilm: image,
-      },
-    ]);
+      })
+    );
   };
   const gotoDetail = () => {
     navigate("/detail", { state: dataFilm });

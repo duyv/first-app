@@ -5,18 +5,22 @@ import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import RootRouter from "./router";
-
+import rootReducers from "./components/redux/store";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 // --> Home page --> localhost:3000
 //      --> Week 1 --> localhost:3000/week-1
 //      --> Week 2 --> localhost:3000/week-2
 //      --> Week 3 --> localhost:3000/week-3
-
+const store = createStore(rootReducers);
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 
