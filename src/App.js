@@ -17,12 +17,13 @@ function App() {
   // const startCountCount = () => {};
 
   // useEffect(() => {}, []);
-  const dispatch = useDispatch();
-  const studentData = localStorage.getItem("studentList");
-  if (studentData) {
-    const studentList = JSON.parse(studentData);
-    dispatch(setStudent(studentList));
-  }
+  // const dispatch = useDispatch();
+  // const studentData = localStorage.getItem("studentList");
+  // if (studentData) {
+  //   const studentList = JSON.parse(studentData);
+  //   dispatch(setStudent(studentList));
+  // }
+  // localStorage.getItem("[]");
 
   return (
     <div className="App">

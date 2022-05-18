@@ -16,6 +16,9 @@ function Navigation() {
         <li>
           <Link to="/student-list-redux">Redux</Link>
         </li>
+        <li>
+          <Link to="/week-8">Week 8</Link>
+        </li>
       </ul>
     </nav>
   );

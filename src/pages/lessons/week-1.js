@@ -28,7 +28,7 @@ export function Week1() {
     //   payload: { id: studentList.length, name: name, email: email, description: description },
     // });
 
-    dispatch(addStudent({ id: studentList.length, name: name, email: email, description: description }));
+    dispatch(addStudent({ id: studentList.length, title: name, email: email, description: description }));
   };
 
   useEffect(() => {
@@ -45,7 +45,6 @@ export function Week1() {
         <textarea className="form-input" type="text" name="description" />
         <input type="submit" />
       </form>
-      <br />
       <br />
       <form className="form-horizontal" onSubmit={onAddClass}>
         <p>FORM CLASS </p>

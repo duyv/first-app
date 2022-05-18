@@ -1,3 +1,9 @@
+export const fetchStudent = () => async (dispatch) => {
+  const json = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const result = await json.json();
+  dispatch(setStudent(result));
+};
+
 export const setStudent = (students) => {
   return {
     type: "SET_STUDENT",
