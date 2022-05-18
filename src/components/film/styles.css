@@ -1,0 +1,38 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h3.card-title {
+    width: max-content;
+}
+
+img.card-img-top {
+    width: 600px;
+    margin: 0 10px 25px 10px;
+}
+
+.card-body a.btn.btn-primary {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+iframe {
+    margin-top: 40px;
+}
+
+form.form-add-group {
+    width: 400px
+}
+
+.form-add-group button.btn.btn-primary {
+    border-radius: 0;
+    padding: 10px;
+    margin: 20px 0px 0px;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}

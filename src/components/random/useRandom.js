@@ -20,7 +20,7 @@ export default function UseRandom() {
     const dataRandom = data[random]
     const isImage = dataRandom.startsWith("https")
     return isImage ? (
-      <img src={dataRandom} style={{ height: '100%', width: '100%' }} />
+      <img src={dataRandom} style={{ height: '100%', width: '100%' }} alt="random" />
     ) : (
       <div style={{ height: '100%', width: '100%', backgroundColor: dataRandom }} />
     )
