@@ -11,7 +11,7 @@ function RootRouter() {
       <Route path="/week-3" element={<Week3 />} />
       <Route path="/week-4" element={<Week4 />} />
       <Route path="/week-5" element={<Week5 />} />
-      <Route path="/details/:movies_id" element={<Detail />} />
+      <Route path="/details" element={<Detail />} />
       <Route path="*" element={<NoData />} />
     </Routes>
   )

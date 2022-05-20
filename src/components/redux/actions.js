@@ -4,3 +4,9 @@ export const addFilmAction = (payload) => {
         payload,
     };
 };
+export const removeFilmAction = (payload) => {
+    return {
+        type: 'REMOVE_FILM',
+        payload,
+    }
+}
