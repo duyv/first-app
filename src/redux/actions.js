@@ -47,10 +47,11 @@ export const setData = (data) => {
 };
 
 export const fetchData = () => async (dispatch) => {
-  // dispatch(showProcess(true));
-  const json = await fetch("https://coinmap.org/api/v1/venues");
-  const result = await json.json();
-  // console.log("result::", result);
-  // dispatch(setData(result));
-  // dispatch(showProcess(false));
+  dispatch(showProcess(true));
+  setTimeout(async () => {
+    const json = await fetch("https://jsonplaceholder.typicode.com/photos");
+    const result = await json.json();
+    dispatch(setData(result));
+    dispatch(showProcess(false));
+  }, 3000);
 };

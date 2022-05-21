@@ -43,15 +43,20 @@ export function Week9() {
     <div>
       <h1>Week 9 - Get Data List - Redux - Middleware</h1>
       <ul>
-        {dataList.map((student, index) => (
-          <div key={index}>
-            <span>{student.title}</span>
-          </div>
-        ))}
+        {showProcess ? (
+          <p>Loading data...</p>
+        ) : (
+          dataList.map((student, index) => (
+            <div key={index}>
+              <span>{student.title}</span>
+            </div>
+          ))
+        )}
       </ul>
       <button
         onClick={() => {
-          console.log("interator::", iterator.next());
+          //   console.log("interator::", iterator.next());
+          dispatch(fetchData());
         }}
       >
         Fetch Data
