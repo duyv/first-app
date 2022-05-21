@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStudent, removeStudent, setStudent } from "../../redux/actions";
 
-function Week8() {
+export function Week8() {
   const students = useSelector((state) => state.studentReducer);
   const dispatch = useDispatch();
 
@@ -34,5 +34,3 @@ function Week8() {
     </div>
   );
 }
-
-export default Week8;

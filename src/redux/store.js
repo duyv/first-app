@@ -30,5 +30,5 @@ const firstMiddleWare = (store) => (next) => async (action) => {
   return next(action);
 };
 
-const store = createStore(rootReducer, applyMiddleware(thunk, firstMiddleWare));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 export default store;

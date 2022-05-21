@@ -31,3 +31,26 @@ export const addClass = (classItem) => {
     payload: classItem,
   };
 };
+
+export const showProcess = (show) => {
+  return {
+    type: "SHOW_PROCESS",
+    payload: show,
+  };
+};
+
+export const setData = (data) => {
+  return {
+    type: "SET_DATA",
+    payload: data,
+  };
+};
+
+export const fetchData = () => async (dispatch) => {
+  // dispatch(showProcess(true));
+  const json = await fetch("https://coinmap.org/api/v1/venues");
+  const result = await json.json();
+  // console.log("result::", result);
+  // dispatch(setData(result));
+  // dispatch(showProcess(false));
+};

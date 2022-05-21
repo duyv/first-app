@@ -30,7 +30,6 @@ function App() {
       <header className="App-header">
         <div className="button-container">
           <h1>Home Page</h1>
-          {/* {renderClock()} */}
           <Navigation />
           <RootRouter />
         </div>
