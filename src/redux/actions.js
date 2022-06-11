@@ -31,3 +31,34 @@ export const addClass = (classItem) => {
     payload: classItem,
   };
 };
+
+export const showProcess = (show) => {
+  console.log("show::", show);
+  return {
+    type: "SHOW_PROCESS",
+    payload: show,
+  };
+};
+
+export const setData = (data) => {
+  return {
+    type: "SET_DATA",
+    payload: data,
+  };
+};
+
+export const fetchData = () => async (dispatch) => {
+  dispatch(showProcess(true));
+  setTimeout(async () => {
+    const json = await fetch("https://jsonplaceholder.typicode.com/photos");
+    const result = await json.json();
+    dispatch(setData(result));
+    dispatch(showProcess(false));
+  }, 3000);
+};
+
+export const fetchDataSaga = () => {
+  return {
+    type: "FETCH_DATA_SAGA",
+  };
+};
