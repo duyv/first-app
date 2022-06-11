@@ -1,7 +1,9 @@
 import { applyMiddleware, createStore } from "redux";
 // import { studentReducer } from "./studentReducer";
 import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 import rootReducer from "./rootReducer";
+import { rootSaga } from "../saga/rootSaga";
 
 // function firstMiddleWare(store){
 //     return function(next){
@@ -10,7 +12,7 @@ import rootReducer from "./rootReducer";
 //         }
 //     }
 // }
-
+const sagaMiddleware = createSagaMiddleware();
 const firstMiddleWare = (store) => (next) => async (action) => {
   //   console.log("action:: 1", action);
   //   if (action.type === "FETCH_STUDENT") {
@@ -29,6 +31,7 @@ const firstMiddleWare = (store) => (next) => async (action) => {
   }
   return next(action);
 };
-
-const store = createStore(rootReducer, applyMiddleware(thunk, firstMiddleWare));
+// lenh dispatch ==> middleware: sagaMiddleware--> call(RootSaga) ==>store
+const store = createStore(rootReducer, applyMiddleware(thunk, sagaMiddleware));
+sagaMiddleware.run(rootSaga);
 export default store;
